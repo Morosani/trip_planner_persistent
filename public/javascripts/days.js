@@ -28,7 +28,7 @@ Day.prototype.drawDayPanel = function() {
 
 Day.prototype.addActivity = function(type, activity) {
   var self = this;
-  console.log("this is type", type)
+  console.log("this is activity", activity)
   var $list = $('#itinerary  .' + type + '-group')
   $listItem = templates.get('itinerary-item')
   $listItem.find('.title').text(activity.name)
@@ -37,9 +37,11 @@ Day.prototype.addActivity = function(type, activity) {
       type: 'POST',
       url: '/days/' + self.dayNum + '/' + type,
       data: {
-        hotelId: self.hotels[0]._id,
-        restaurantId: self.restaurants[0]._id,
-        thingId: self.thingsToDo[0]._id
+        activity: activity._id  
+
+        // hotelId: self.hotels[0]._id,
+        // restaurantId: self.restaurants[0]._id,
+        // thingId: self.thingsToDo[0]._id
       },
       success: function(responseData){
         console.log("add hotel to specific day");
